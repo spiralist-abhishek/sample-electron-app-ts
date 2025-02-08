@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Albert Sans', system-ui, sans-serif;
+  font-family: -apple-system, 'Albert Sans', system-ui, sans-serif;
 }

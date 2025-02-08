@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { initializeAuth } from "firebase/auth";
-import { doc, getFirestore } from "firebase/firestore";
+import {
+	collection,
+	doc,
+	getFirestore,
+	query,
+	where,
+} from "firebase/firestore";
 
 const firebaseConfig = {
 	apiKey: process.env.FIREBASE_API_KEY ?? "",
@@ -16,4 +22,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = initializeAuth(app);
 export const db = getFirestore(app);
-export const appDocRef = doc(db, "app", "chatNotesApp");
+
+
+const appDocRef = doc(db, "app", "chatNotesApp");
+export const notesDocRef = (uid: string) =>
+	query(collection(appDocRef, "notes"), where("owner", "==", uid));
+export const itemsDocRef = (uid: string) =>
+	query(collection(appDocRef, "items"), where("owner", "==", uid));

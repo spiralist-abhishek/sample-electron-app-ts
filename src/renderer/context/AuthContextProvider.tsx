@@ -5,6 +5,7 @@ import { auth } from "../config/firebase";
 interface IAuth {
 	user: User | null;
 	loading: boolean;
+	error: string;
 	signInWithEmail: (email: string, password: string) => void;
 	signOut: () => void;
 }
@@ -18,6 +19,7 @@ export function useAuthContext() {
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string>("");
 
 	const signInWithEmail = (email: string, password: string) => {
 		setLoading(true);
@@ -27,6 +29,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 			})
 			.catch((err) => {
 				console.error("error signing in", err);
+				setError(err.message);
 			})
 			.finally(() => {
 				setLoading(false);
@@ -42,6 +45,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 			})
 			.catch((err) => {
 				console.error("error signing in", err);
+				setError(err.message);
 			})
 			.finally(() => {
 				setLoading(false);
@@ -51,6 +55,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const value = {
 		user,
 		loading,
+		error,
 		signInWithEmail,
 		signOut,
 	};

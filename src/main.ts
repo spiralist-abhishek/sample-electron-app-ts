@@ -37,7 +37,7 @@ const createWindow = (): void => {
 				...details.responseHeaders,
 				"Content-Security-Policy": [
 					"sytle-src https://fonts.googleapis.com https://fonts.gstatic.com;",
-					"connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;",
+					"connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com;",
 				],
 			},
 		});
