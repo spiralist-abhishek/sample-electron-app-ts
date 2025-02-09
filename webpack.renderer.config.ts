@@ -27,13 +27,6 @@ export const rendererConfig: Configuration = {
 	plugins,
 	resolve: {
 		extensions: [".js", ".ts", ".jsx", ".tsx", ".css"],
-		alias: {
-			"firebase/auth": path.resolve(
-				__dirname,
-				"node_modules/firebase/auth/dist",
-				"index.cjs.js"
-			),
-		},
 	},
 	devtool: "source-map",
 	output: {
