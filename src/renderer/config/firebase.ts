@@ -1,5 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { initializeAuth } from "firebase/auth";
+import {
+	getAuth,
+	setPersistence,
+	browserLocalPersistence,
+} from "firebase/auth";
 import {
 	collection,
 	doc,
@@ -20,9 +24,17 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = initializeAuth(app);
+export const auth = getAuth(app);
 export const db = getFirestore(app);
 
+// set persistence
+setPersistence(auth, browserLocalPersistence)
+	.then(() => {
+		//
+	})
+	.catch(() => {
+		//
+	});
 
 const appDocRef = doc(db, "app", "chatNotesApp");
 export const notesDocRef = (uid: string) =>
