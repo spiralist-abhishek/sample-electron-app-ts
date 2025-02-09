@@ -16,9 +16,13 @@ export function useAuthContext() {
 	return useContext(AuthContext);
 }
 
-const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
+export default function AuthContextProvider({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	const [user, setUser] = useState<User | null>(null);
-	const [loading, setLoading] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string>("");
 
 	const signInWithEmail = (email: string, password: string) => {
@@ -75,6 +79,4 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
 			<AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 		</>
 	);
-};
-
-export default AuthContextProvider;
+}
